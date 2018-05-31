@@ -59,7 +59,29 @@ class AS_TitleBar extends React.Component {
         time: time
     };
   }
-  
+  LayoutSearchbar(){
+    if (this.props.SearchBarOff) {
+      return;
+    }
+    return (
+      <div>
+        <div id="u125" class="ax_default _图片_">
+          <img id="u125_img" class="img " src={u125_img} alt="" />
+        </div>
+
+        <div id="u126" class="ax_default _图片_">
+          <img id="u126_img" class="img " src={u126_img} alt="" />
+        </div>
+
+        <div id="u134" class="ax_default _文本段落">
+          <img id="u134_img" class="img " src={u134_img} alt="" />
+          <div id="u134_text" class="text ">
+            <p><span>请输入代码查询</span></p>
+        </div>
+        </div>
+      </div>
+    )
+  }
     render() {
       return (
         <div id="base" class="">
@@ -156,24 +178,7 @@ class AS_TitleBar extends React.Component {
             <p><span>{this.state.date}</span></p><p><span>{this.state.time}</span></p>
           </div>
         </div>
-
-
-        <div id="u125" class="ax_default _图片_">
-          <img id="u125_img" class="img " src={u125_img} alt="" />
-        </div>
-
-
-        <div id="u126" class="ax_default _图片_">
-          <img id="u126_img" class="img " src={u126_img} alt="" />
-        </div>
-
-        <div id="u134" class="ax_default _文本段落">
-          <img id="u134_img" class="img " src={u134_img} alt="" />
-          <div id="u134_text" class="text ">
-            <p><span>请输入代码查询</span></p>
-          </div>
-        </div>
-           
+        {this.LayoutSearchbar()}
         </div>
       );
     }

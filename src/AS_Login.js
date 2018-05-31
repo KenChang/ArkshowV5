@@ -6,6 +6,7 @@ import './data/styles.css'
 import './files/login/styles.css'
 import AS_Register from './AS_Register'
 import AS_RetrievePWD from './AS_RetrievePWD'
+import jwtService from './jwtService';
 import u0_img from './images/login/u0.jpg'
 import u1_img from './images/login/u1.png'
 import u2_img from './images/login/u2.png'
@@ -23,7 +24,20 @@ import u18_img from './images/login/u18.png'
 
 
 class AS_Login extends React.Component {
-  
+      constructor(){
+        super();
+        this.handleChange = this.handleChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.Auth = new jwtService();
+        this.state = {  
+          username: "",
+          password: ""
+        }
+    }
+    componentWillMount(){
+        if(this.Auth.loggedIn())
+            this.props.history.replace('/');
+    }
     render() {
       return (
         <div id="base" class="">
@@ -59,26 +73,28 @@ class AS_Login extends React.Component {
         <div id="u6" class="ax_default _文本段落">
           <img id="u6_img" class="img " src={u6_img}/>
           <div id="u6_text" class="text ">
-            <p><span>帐号</span></p>
+            <p><span>帐号:</span></p>
           </div>
         </div>
-  
-        
+        <input placeholder="" name="username" type="text" onChange={this.handleChange} />
+    
         <div id="u7" class="ax_default _文本段落">
           <img id="u7_img" class="img " src={u6_img}/>
           <div id="u7_text" class="text ">
-            <p><span>密码</span></p>
+            <p><span>密码:</span></p>                 
           </div>
         </div>
-  
-        
+        <input placeholder="" name="password" type="password" onChange={this.handleChange}/>
+
         <div id="u8" class="ax_default _文本段落">
           <img id="u8_img" class="img " src={u6_img}/>
           <div id="u8_text" class="text ">
-          <Link to='./AS_RiskAnalysis'><p><span>登录</span></p></Link>
+           <p><span>登录</span></p>
           </div>
         </div>
-  
+        <form onSubmit={this.handleFormSubmit}>
+          <input className="form-submit" type="submit" />
+        </form>
         
         <div id="u9" class="ax_default _文本段落">
           <img id="u9_img" class="img " src={u6_img}/>
@@ -137,5 +153,25 @@ class AS_Login extends React.Component {
       </div>
       );
   }
+
+  handleFormSubmit(e){
+    e.preventDefault();
+
+    this.Auth.login(this.state.username,this.state.password)
+        .then(res =>{
+           this.props.history.replace('/');
+        })
+        .catch(err =>{
+            alert(err);
+        })
+}
+
+handleChange(e){
+    this.setState(
+        {
+            [e.target.name]: e.target.value
+        }
+    )
+}  
 }       
 export default AS_Login;

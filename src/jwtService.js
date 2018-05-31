@@ -10,6 +10,9 @@ export default class jwtService {
 
     login(username, password) {
         // Get a token
+        if ((username == null) || (password == null)) {
+          return;
+        }
         return comm_channel
         .post(this.domain)
         .type('form')

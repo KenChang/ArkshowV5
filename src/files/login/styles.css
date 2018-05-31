@@ -499,3 +499,35 @@
   visibility:hidden;
   word-wrap:break-word;
 }
+input[type="text"]{
+  border-width:0px;
+  position:absolute;
+  left:100px;
+  top:258px;
+  width:220px;
+  height:41px;
+  background: transparent;
+  border: none;
+}
+input[type="password"]{
+  border-width:0px;
+  position:absolute;
+  left:100px;
+  top:308px;
+  width:220px;
+  height:41px;
+  background: transparent;
+  border: none;
+}
+input[type="submit"]{
+  border-width:0px;
+  position:absolute;
+  left:38px;
+  top:357px;
+  width:285px;
+  height:42px;
+  background: transparent;
+  border: none;
+  opacity:0;
+}
+
